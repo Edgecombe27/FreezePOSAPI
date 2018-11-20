@@ -1,4 +1,4 @@
-package freeze_pos_api
+package menu
 
 type MenuItem struct {
 	ID int `json:"id,omitempty"`
