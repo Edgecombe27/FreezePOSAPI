@@ -3,6 +3,9 @@ package menu
 import (
 	"encoding/json"
 	"net/http"
+	"strconv"
+
+	"github.com/gorilla/mux"
 )
 
 var testmenu Menu
@@ -45,8 +48,18 @@ func GetMenu(w http.ResponseWriter, r *http.Request) {
 }
 
 /* Ingredients */
-func GetIngredient(w http.ResponseWriter, r *http.Request) {
 
+func GetIngredients(w http.ResponseWriter, r *http.Request) {
+	json.NewEncoder(w).Encode(testmenu.Ingredients)
+}
+func GetIngredient(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	id, err := strconv.Atoi(params["id"])
+	if err != nil {
+	} else if id > len(testmenu.Ingredients) {
+	} else {
+		json.NewEncoder(w).Encode(testmenu.Ingredients[id])
+	}
 }
 func NewIngredient(w http.ResponseWriter, r *http.Request) {
 
@@ -56,8 +69,17 @@ func DeleteIngredient(w http.ResponseWriter, r *http.Request) {
 }
 
 /* Preparations */
+func GetPreparations(w http.ResponseWriter, r *http.Request) {
+	json.NewEncoder(w).Encode(testmenu.Preparations)
+}
 func GetPreparation(w http.ResponseWriter, r *http.Request) {
-
+	params := mux.Vars(r)
+	id, err := strconv.Atoi(params["id"])
+	if err != nil {
+	} else if id > len(testmenu.Preparations) {
+	} else {
+		json.NewEncoder(w).Encode(testmenu.Preparations[id])
+	}
 }
 func NewPreparation(w http.ResponseWriter, r *http.Request) {
 
@@ -67,7 +89,17 @@ func DeletePreparation(w http.ResponseWriter, r *http.Request) {
 }
 
 /* Groups */
+func GetGroups(w http.ResponseWriter, r *http.Request) {
+	json.NewEncoder(w).Encode(testmenu.Groups)
+}
 func GetGroup(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	id, err := strconv.Atoi(params["id"])
+	if err != nil {
+	} else if id > len(testmenu.Groups) {
+	} else {
+		json.NewEncoder(w).Encode(testmenu.Groups[id])
+	}
 
 }
 func NewGroup(w http.ResponseWriter, r *http.Request) {
@@ -78,8 +110,17 @@ func DeleteGroup(w http.ResponseWriter, r *http.Request) {
 }
 
 /* MenuItems */
+func GetMenuItems(w http.ResponseWriter, r *http.Request) {
+	json.NewEncoder(w).Encode(testmenu.MenuItems)
+}
 func GetMenuItem(w http.ResponseWriter, r *http.Request) {
-
+	params := mux.Vars(r)
+	id, err := strconv.Atoi(params["id"])
+	if err != nil {
+	} else if id > len(testmenu.MenuItems) {
+	} else {
+		json.NewEncoder(w).Encode(testmenu.MenuItems[id])
+	}
 }
 func NewMenuItem(w http.ResponseWriter, r *http.Request) {
 
